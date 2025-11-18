@@ -1,19 +1,19 @@
-# README: Explicando DIP e OCP do SOLID de forma detalhada e simples
+# Explicando Princípio da Inversão de Dependência e Princípio do Aberto/Fechado
 
-Este guia ensina, de forma clara e prática, dois princípios essenciais do SOLID: **Dependency Inversion Principle (DIP)** e **Open/Closed Principle (OCP)**. Vamos entender de onde surgem, como aplicá-los e por que facilitam a vida do programador em manutenção, testes e evolução.
+Este guia ensina, de forma clara e prática, dois princípios essenciais do SOLID: Princípio da Inversão de Dependência e Princípio do Aberto/Fechado. Vamos entender como aplicá-los e por que facilitam a vida do programador em manutenção e testes.
 
 ***
 
 ## 1. Dependency Inversion Principle (DIP) — Princípio da Inversão de Dependência
 
 **O que diz o DIP?**
-- **Módulos de alto nível** (que resolvem problemas do seu software) **não devem depender diretamente de módulos de baixo nível** (que lidam com detalhes técnicos, como bancos de dados, APIs ou bibliotecas).
+- **Módulos de alto nível** (que resolvem problemas do seu software) não devem depender diretamente de módulos de baixo nível (que lidam com detalhes técnicos, como bancos de dados, APIs ou bibliotecas).
 - **Ambos devem depender de abstrações**, como interfaces ou classes base.
 
 **Por quê?**
-Imagine que você programe uma lógica de negócio (como "cadastro de usuários") que usa diretamente um banco de dados específico (por exemplo, MySQL). Se precisar trocar o banco de dados para MongoDB, pode causar mudanças em várias partes do código — é um exemplo clássico de **acoplamento forte**.
+Imagine que você programe uma lógica de negócio (como "cadastro de usuários") que usa diretamente um banco de dados específico (por exemplo, MySQL). Se precisar trocar o banco de dados para MongoDB, pode causar mudanças em várias partes do código, pois é um exemplo clássico de acoplamento forte.
 
-Com o DIP, você cria uma **interface** (ou abstração) para acesso ao banco, e sua lógica depende dessa interface — nunca diretamente da implementação específica. Assim, mudar o banco, fazer testes automatizados ou incluir alternativas se torna fácil e seguro.
+Com o DIP, você cria uma interface (ou abstração) para acesso ao banco, e sua lógica depende dessa interface e nunca diretamente da implementação específica. Assim, mudar o banco, fazer testes automatizados ou incluir alternativas se torna fácil e seguro.
 
 **Exemplo prático em JavaScript:**  
 Veja antes (**ruim**) e depois (**bom**) aplicando o princípio.
@@ -65,7 +65,7 @@ class GerenciadorUsuarios {
   }
 }
 ```
-> **Comentários:** No exemplo bom, `GerenciadorUsuarios` funciona com qualquer banco. Basta receber a classe correta; não precisa modificar o gerenciador toda vez!
+> **Comentários:** No exemplo bom, `GerenciadorUsuarios` funciona com qualquer banco. Basta receber a classe correta, não precisa modificar o gerenciador toda vez!
 
 ### Erros comuns ao aplicar DIP
 - Instanciar o detalhe concreto diretamente na classe (usar `new` dentro de classes de alto nível).
@@ -77,13 +77,13 @@ class GerenciadorUsuarios {
 ## 2. Open/Closed Principle (OCP) — Princípio do Aberto/Fechado
 
 **O que diz o OCP?**
-- O software deve ser **aberto para extensão** (pode adicionar novas funções) e **fechado para modificação** (não precisa mexer no código antigo para incluir novidades).
-- Ou seja, ao invés de editar o código existente para adicionar comportamentos novos, você **cria novas classes ou módulos** que extendem os já existentes.
+- O software deve ser aberto para extensão (pode adicionar novas funções) e fechado para modificação (não precisa mexer no código antigo para incluir novidades).
+- Ou seja, ao invés de editar o código existente para adicionar comportamentos novos, você cria novas classes ou módulos que extendem os já existentes.
 
 **Por quê?**
 Se você tem um código cheio de condicionais (`if` ou `switch`) para cada novo tipo de cliente ou desconto, cada “feature” nova exige alterar o código antigo. Isso gera bugs e obriga re-testes constantes.
 
-Com o OCP, você usa herança, interfaces ou composição para **adicionar** melhorias sem alterar o que já existe e funciona. O código antigo permanece testado e confiável, e o novo comportamento é isolado em novos arquivos ou funções.
+Com o OCP, você usa herança, interfaces ou composição para adicionar melhorias sem alterar o que já existe e funciona. O código antigo permanece testado e confiável, e o novo comportamento é isolado em novos arquivos ou funções.
 
 **Exemplo prático em JavaScript:**  
 Veja antes (**ruim**) e depois (**bom**) aplicando o princípio.
@@ -97,7 +97,7 @@ class CalculadoraDesconto {
     } else if (cliente.tipo === 'vip') {
       return valor * 0.8;
     }
-    // Para novo tipo, tem que editar aqui 😞
+    // Para novo tipo, tem que editar aqui 
     return valor;
   }
 }
@@ -123,7 +123,7 @@ class ClienteVIP extends Cliente {
   }
 }
 
-// Adicionar tipo novo não afeta código antigo 👌
+// Adicionar tipo novo não afeta código antigo
 class ClienteGold extends Cliente {
   calcularDesconto(valor) {
     return valor * 0.7;
@@ -148,4 +148,4 @@ class CalculadoraDesconto {
 ## Resumo prático
 
 - **DIP**: Programe usando abstrações (interfaces), nunca dependa diretamente do detalhe (implementação concreta).
-- **OCP**: Ao adicionar comportamentos novos, estenda através de novas classes; não remende o código velho.
+- **OCP**: Ao adicionar comportamentos novos, estenda através de novas classes, não remende o código antigo.
