@@ -1,4 +1,4 @@
-# README: Explicando DIP e OCP do SOLID de forma detalhada e simples
+# Explicando Princípio da Inversão de Dependência e Princípio do Aberto/Fechado
 
 Este guia ensina, de forma clara e prática, dois princípios essenciais do SOLID: **Dependency Inversion Principle (DIP)** e **Open/Closed Principle (OCP)**. Vamos entender de onde surgem, como aplicá-los e por que facilitam a vida do programador em manutenção, testes e evolução.
 
