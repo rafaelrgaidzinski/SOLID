@@ -255,6 +255,15 @@ class PaymentService {
     this.gateway.process(amount);
   }
 }
+
+class Cart {
+  constructor(paymentService) {
+    this.paymentService = paymentService;
+  }
+  pay(amount) {
+    this.paymentService.pay(amount); // só fala com PaymentService
+  }
+}
 ```
 Neste modelo, o `PaymentService` depende da abstração `PaymentGateway`, e não de implementações específicas. Isso facilita testes, substituições e evolução do sistema.
 
