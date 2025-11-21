@@ -1,4 +1,4 @@
-# Explicando Princípio da Inversão de Dependência e Princípio do Aberto/Fechado
+# SOLID
 
 Este guia ensina, de forma clara e prática, dois princípios essenciais do SOLID: Princípio da Inversão de Dependência e Princípio do Aberto/Fechado. Vamos entender como aplicá-los e por que facilitam a vida do programador em manutenção e testes.
 
@@ -155,7 +155,11 @@ Aqui está a explicação revisada, organizada e pronto para um **README**, com 
 
 ***
 
-## 3. Indirection (Indireção) — GRASP
+# GRASP
+
+Este guia ensina, de forma clara e prática, o princípio Indirection do GRASP. Vamos entender como aplicá-lo e como facilitam a vida do programador em manutenção e testes.
+
+## 1. Indirection (Indireção)
 
 ### O que é Indirection?
 
